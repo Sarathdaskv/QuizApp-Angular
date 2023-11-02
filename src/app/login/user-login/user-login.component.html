@@ -13,9 +13,12 @@
             <h2 class="head py-2">Login</h2>
             <form class="user-login" [formGroup]="loginForm" (ngSubmit)="onLogin()">
                 <div class="row">
+                    <div *ngIf="loginError" class="text-danger ms-5">
+                        Invalid Credentials
+                    </div>
                     <div class="col-md-12 roundedTextBox mb-3">
                         <label>Email</label>
-                        <input type="email" class="form-control mb-2" id="inputEmail" formControlName="email"
+                        <input type="email" class="form-control mb-2" name="email" id="inputEmail" formControlName="email"
                             placeholder="Enter Email">
                         <div *ngIf="submitted && loginForm.controls['email'].errors" class="text-danger">
                             <div *ngIf="loginForm.controls['email'].errors?.['email']">Email must be valid.</div>
@@ -24,7 +27,7 @@
                     </div>
                     <div class="col-md-12 roundedTextBox mb-3">
                         <label>Password</label>
-                        <input type="password" class="form-control mb-2" id="inputPassword" formControlName="password"
+                        <input type="password" name="password" class="form-control mb-2" id="inputPassword" formControlName="password"
                             placeholder="Enter Password">
 
                         <div *ngIf="submitted && loginForm.controls['password'].errors" class="text-danger">

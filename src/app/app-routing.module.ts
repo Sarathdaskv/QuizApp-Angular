@@ -5,10 +5,10 @@ import { AdminLoginComponent } from './login/admin-login/admin-login.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
-  {path:'login', component:UserLoginComponent},
+  {path:'user', component:UserLoginComponent},
   {path:'admin', component:AdminLoginComponent},
-  {path:'', component:UserLoginComponent},
-  {path:'user', component:UserComponent},
+  { path: '',   redirectTo: '/user', pathMatch: 'full' },
+  {path:'user/:userId', component:UserComponent},
   { path: '**', component: UserLoginComponent }
 ];
 

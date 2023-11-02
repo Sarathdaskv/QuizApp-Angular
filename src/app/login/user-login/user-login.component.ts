@@ -2,6 +2,7 @@ import { StmtModifier } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/service/auth-service.service';
 
 @Component({
   selector: 'app-user-login',
@@ -9,10 +10,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {
-  public loginForm!: FormGroup;
-  public submitted = false;
+  loginForm!: FormGroup;
+  submitted = false;
+  loginError: boolean = false;
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthServiceService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -25,9 +27,17 @@ export class UserLoginComponent implements OnInit {
   onLogin() {
     this.submitted = true
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
-    //  localStorage.setItem("user-Data", JSON.stringify(this.loginForm.value));
-      this.router.navigate(["/user"]);
+      this.authService.getUsers().subscribe(data => {
+        const user = data.find(item => item.email === this.loginForm.value.email && item.password === this.loginForm.value.password);
+        if (user) {
+          localStorage.setItem("user-Data", JSON.stringify(this.loginForm.value));
+          this.router.navigate(['/user',user.id]);
+        }
+        else {
+          this.loginError = true;
+        }
+      })
+
     }
   }
 }
