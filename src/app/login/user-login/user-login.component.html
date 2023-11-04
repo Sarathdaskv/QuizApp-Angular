@@ -19,7 +19,7 @@
                     <div class="col-md-12 roundedTextBox mb-3">
                         <label>Email</label>
                         <input type="email" class="form-control mb-2" name="email" id="inputEmail" formControlName="email"
-                            placeholder="Enter Email">
+                            placeholder="Enter Email" email>
                         <div *ngIf="submitted && loginForm.controls['email'].errors" class="text-danger">
                             <div *ngIf="loginForm.controls['email'].errors?.['email']">Email must be valid.</div>
                             <div *ngIf="loginForm.controls['email'].errors?.['required']">Email is required.</div>
