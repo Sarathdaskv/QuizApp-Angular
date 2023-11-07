@@ -29,7 +29,7 @@ export class AdminLoginComponent {
       this.authService.getAdmin().subscribe(data => {
         const user = data.find(item => item.email === this.loginForm.value.email && item.password === this.loginForm.value.password);
         if (user) {
-          localStorage.setItem("admin-Data", JSON.stringify(this.loginForm.value));
+       
           this.router.navigate(["/user"]);
         }
         else {

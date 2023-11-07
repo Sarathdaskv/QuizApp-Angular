@@ -17,21 +17,16 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(data => {
-      console.log(data);
       this.userId = data['userId'];
     })
      this.auth.getLoginUserData(this.userId).subscribe(data=>{
       this.userData=data;
     }
     )
-    
-    console.log("reg",this.userData);
-    
   }
 
   logOut() {
-    this.userData.login = false;
-    this.routing.navigate(['/'])
+    this.auth.logOut()
   }
 
 }

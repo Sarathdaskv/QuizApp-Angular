@@ -1,5 +1,12 @@
-<mat-toolbar color="primary">
-      <span>Hi {{userData?.name}} </span>
-      <span class="example-spacer"></span>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+
+<mat-toolbar color="primary" class="d-flex justify-content-between">
+      <span>Hi {{userData?.name}} </span>
+      <ul style="list-style-type: none;">
+            <li>
+                  <button mat-button (click)="logOut()">Log out</button>
+            </li>
+      </ul>
 </mat-toolbar>
