@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Route, Router } from '@angular/router';
 import { AuthData } from '../auth-data.model';
-import { Router } from '@angular/router';
-
+import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthServiceService  {
-
+export class AdminService {
 
   private token!: string;
   private tokenTimer!: any;
@@ -46,9 +44,9 @@ export class AuthServiceService  {
     return this.http.get<any[]>('http://localhost:3000/users');
   }
 
-  userLogin(email: string, password: string) {
+  adminLogin(email: string, password: string) {
     const authData: AuthData = { email: email, password: password }
-    return this.http.post<any>('http://localhost:3000/login', authData).subscribe(response => {
+    return this.http.post<any>('http://localhost:3000/admin/login', authData).subscribe(response => {
       if (response.message) {
         this.messageSubject.next(response.message)
       } else {
@@ -64,7 +62,7 @@ export class AuthServiceService  {
         const expDate = new Date(now.getTime() + expiresInDuration * 1000)
         this.saveAuthData(token, expDate)
         console.log(expDate);
-        this.router.navigate(['/user', this.userData._id])
+        this.router.navigate(['/admin', this.userData._id])
       }
     })
 
@@ -82,6 +80,9 @@ private setAuthTimer(duration:number){
   getLoginUserData(userId: string) {
     return this.http.get<any>(`http://localhost:3000/user/${userId}`);
   }
+  getLoginAdminData(adminId: string) {
+    return this.http.get<any>(`http://localhost:3000/admin/${adminId}`);
+  }
   setLoginUserData(data: any) {
     this.userData = data
   }
@@ -92,7 +93,7 @@ private setAuthTimer(duration:number){
     this.authStatusListner.next(false)
     clearTimeout(this.tokenTimer)
     this.clearAuthData()
-    this.router.navigate(['/user'])
+    this.router.navigate(['/admin'])
   }
 
   private saveAuthData(token: string, expDate: Date) {
@@ -140,7 +141,4 @@ private setAuthTimer(duration:number){
     }
     return false;
   }
-  
-
-
 }

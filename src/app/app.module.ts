@@ -16,12 +16,15 @@ import {MatButtonModule} from '@angular/material/button';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import ActivateGuard from './activate-guard';
 import { AuthInterceptor } from './auth-interceptor';
+import { AuthGuard } from './auth-guard';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
     UserLoginComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ import { AuthInterceptor } from './auth-interceptor';
   ],
   providers: [
     ActivateGuard,
+    AuthGuard,
   {
     provide:HTTP_INTERCEPTORS,
     useClass:AuthInterceptor,
