@@ -17,6 +17,13 @@ export class QuestionService {
     })
   }
 
+  getQuestions(adminId:string){
+    return this.http.get<any>(`http://localhost:3000/admin/${adminId}/question`).subscribe(response=>{
+      console.log(response);
+      
+    })
+  }
+
   // getQuestions(): Question[] {
   //  return ;
   // }
