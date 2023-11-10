@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Question } from '../question.model';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,13 +19,8 @@ export class QuestionService {
   }
 
   getQuestions(adminId:string){
-    return this.http.get<any>(`http://localhost:3000/admin/${adminId}/question`).subscribe(response=>{
-      console.log(response);
-      
-    })
+    return this.http.get(`http://localhost:3000/admin/${adminId}/question`)
   }
 
-  // getQuestions(): Question[] {
-  //  return ;
-  // }
+  
 }

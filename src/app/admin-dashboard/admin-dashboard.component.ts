@@ -13,23 +13,25 @@ import { QuestionService } from '../service/question.service';
 export class AdminDashboardComponent {
   adminId!: string;
   userData!: any
+  allQuestionData: any;
 
   question: Question = {
     questionText: '',
-    option1:'',
-    option2:'',
-    option3:'',
-    option4:'',
+    option1: '',
+    option2: '',
+    option3: '',
+    option4: '',
     correctAnswer: 0
   };
-  option1!: string ;
-  option2!: string ;
-  option3!: string ;
-  option4!: string ;
-  
-  answerIndex!:number
+  option1!: string;
+  option2!: string;
+  option3!: string;
+  option4!: string;
+
+  answerIndex!: number
 
   constructor(private route: ActivatedRoute, private auth: AdminService, private routing: Router, private questionService: QuestionService) { }
+
 
   ngOnInit(): void {
     this.route.params.subscribe(data => {
@@ -39,40 +41,38 @@ export class AdminDashboardComponent {
       this.userData = data;
     }
     )
-    console.log(this.questionService.getQuestions(this.adminId));
+    this.questionService.getQuestions(this.adminId).subscribe(questions => {
+      this.allQuestionData = questions;
+      console.log("ewf", this.allQuestionData);
+    });
+
+
   }
 
 
   submitForm() {
-    this.question.option1=this.option1
-    this.question.option2=this.option2
-    this.question.option3=this.option3
-    this.question.option4=this.option4
-    this.question.correctAnswer=this.answerIndex;
+    this.question.option1 = this.option1
+    this.question.option2 = this.option2
+    this.question.option3 = this.option3
+    this.question.option4 = this.option4
+    this.question.correctAnswer = this.answerIndex;
     this.questionService.addQuestion(this.question);
     this.question = {
       questionText: '',
-      option1:'',
-      option2:'',
-      option3:'',
-      option4:'',
+      option1: '',
+      option2: '',
+      option3: '',
+      option4: '',
       correctAnswer: 0
     };
     this.option1 = '';
     this.option2 = '';
     this.option3 = '';
     this.option4 = '';
-    this.answerIndex=0;
+    this.answerIndex = 0;
+
   }
 
-  getQuestions(){
-    
-    
-    
-  }
-   
-  
-  
   logOut() {
     this.auth.logOut()
   }

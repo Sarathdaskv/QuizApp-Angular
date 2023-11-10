@@ -14,42 +14,41 @@
 
 
 <!-- Button trigger modal -->
-<div class="d-flex justify-content-center mt-5">
-<button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Add a Question
-  </button>
+<div class="d-flex justify-content-center mt-2">
+    <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Add a Question
+    </button>
 </div>
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Question</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Question</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form (ngSubmit)="submitForm()">
+                <div class="modal-body">
+                    <label>Question:</label><br>
+                    <input class="w-100" type="text" [(ngModel)]="question.questionText" name="questionText"
+                        required><br>
+                    <label>Option 1</label><br>
+                    <input class="w-100" type="text" [(ngModel)]="option1" name="option1" value="1" required><br>
+                    <label>Option 2</label><br>
+                    <input class="w-100" type="text" [(ngModel)]="option2" name="option2" value="2" required><br>
+                    <label>Option 3</label><br>
+                    <input class="w-100" type="text" [(ngModel)]="option3" name="option4" value="3" required><br>
+                    <label>Option 4</label>
+                    <input class="w-100" type="text" [(ngModel)]="option4" name="option4" value="4" required><br>
+                    <label>Answer Index:</label>
+                    <input class="w-100 mb-5" type="text" [(ngModel)]="answerIndex" name="answerIndex" required><br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="submit" >Add Question</button>
+                </div>
+            </form>
         </div>
-        <div class="modal-body">
-            
-                <form (ngSubmit)="submitForm()">
-                    
-                        
-                            <label>Question:</label><br>
-                            <input class="w-100" type="text" [(ngModel)]="question.questionText" name="questionText" required><br>
-                            <label>Option 1</label><br>
-                            <input class="w-100" type="text" [(ngModel)]="option1" name="option1"  value="1" required><br>
-                            <label>Option 2</label><br>
-                            <input class="w-100" type="text" [(ngModel)]="option2" name="option2"  value="2" required><br>
-                            <label>Option 3</label><br>
-                            <input class="w-100" type="text" [(ngModel)]="option3" name="option4"   value="3" required><br>
-                            <label>Option 4</label>
-                            <input class="w-100" type="text" [(ngModel)]="option4" name="option4"  value="4" required><br>
-                            <label>Answer Index:</label>
-                            <input class="w-100 mb-5" type="text" [(ngModel)]="answerIndex" name="answerIndex" required><br>
-                        <button class="btn btn-primary" type="submit">Add Question</button>
-                </form>
-            
-        </div>
-      </div>
     </div>
-  </div>
-
-  <!-- <button class="btn btn-primary" (click)="getQuestions()" >get all Questions</button> -->
+</div>
+<app-questions-table [questions]="allQuestionData" [adminId]="adminId"></app-questions-table>

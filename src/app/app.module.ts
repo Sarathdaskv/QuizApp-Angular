@@ -18,13 +18,16 @@ import ActivateGuard from './activate-guard';
 import { AuthInterceptor } from './auth-interceptor';
 import { AuthGuard } from './auth-guard';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { QuestionsTableComponent } from './questions-table/questions-table.component';
+import {MatTableModule} from '@angular/material/table';
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
     UserLoginComponent,
     AdminLoginComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    QuestionsTableComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule
   ],
   providers: [
     ActivateGuard,
