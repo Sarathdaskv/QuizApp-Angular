@@ -21,6 +21,8 @@ export class QuestionService {
   getQuestions(adminId:string){
     return this.http.get(`http://localhost:3000/admin/${adminId}/question`)
   }
-
+  getRandomQuestions(){
+    return this.http.get('http://localhost:3000/questions')
+  }
   
 }

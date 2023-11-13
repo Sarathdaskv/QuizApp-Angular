@@ -10,3 +10,17 @@
             </li>
       </ul>
 </mat-toolbar>
+
+<div *ngIf="questions && questions.length > 0">
+      <app-question
+        *ngFor="let question of questions; let i = index"
+        [question]="question"
+        (answerSelected)="answerSelected($event)"
+        [isActive]="i === currentQuestionIndex"
+      ></app-question>
+    </div>
+
+    <div *ngIf="currentQuestionIndex==10">
+      <h1>Your score is {{score}}</h1>
+    </div>
+    

@@ -20,6 +20,7 @@ import { AuthGuard } from './auth-guard';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { QuestionsTableComponent } from './questions-table/questions-table.component';
 import {MatTableModule} from '@angular/material/table';
+import { QuestionComponent } from './question/question.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import {MatTableModule} from '@angular/material/table';
     UserLoginComponent,
     AdminLoginComponent,
     AdminDashboardComponent,
-    QuestionsTableComponent
+    QuestionsTableComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,
